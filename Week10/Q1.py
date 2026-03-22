@@ -37,13 +37,8 @@ def display_credentials(credentials):
 def add_credential(website, username, password):
     with sqlite3.connect(DB_NAME) as conn:
         conn.execute("INSERT INTO vault (website, username, password) VALUES (?, ?, ?)", (website, username, password))
-    pass
 
 
-# TODO: Complete get_all_credentials()
-#   Connect to DB_NAME.
-#   SELECT all rows from vault, ordered by website ASC.
-#   Fetch all rows, close the connection, and return the list.
 def get_all_credentials():
     with sqlite3.connect(DB_NAME) as conn:
         return conn.execute("SELECT * FROM vault ORDER BY website ASC").fetchall()
